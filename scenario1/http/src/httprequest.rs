@@ -1,3 +1,22 @@
+
+// HTTP 버전 확인 후 값 지정.
+#[derive(Debug, PartialEq)]
+pub enum Version {
+    V1_1,
+    V2_0,
+    Uninitialized,
+}
+
+impl From<&str> for Version {
+    fn from(s: &str) -> Version {
+        match s {
+            "HTTP/1.1" => Version::V1_1,
+            _ => Version::Uninitialized,
+        }
+    }
+}
+
+// HTTP 메서드 확인 후 값 지정.
 #[derive(Debug, PartialEq)]
 pub enum Method {
     Get,
@@ -15,12 +34,19 @@ impl From<&str> for Method {
     }
 }
 
+// 테스트 코드.
 #[cfg(test)]
 mod tests {
     use super::*;
-    #[test]
+    #[test] // HTTP 메서드 테스트.
     fn test_method_into() {
         let m: Method = "GET".into();
         assert_eq!(m, Method::Get);
+    }
+
+    #[test] // HTTP 버전 테스트.
+    fn test_version_into() {
+        let m: Version = "HTTP/1.1".into();
+        assert_eq!(m, Version::V1_1);
     }
 }

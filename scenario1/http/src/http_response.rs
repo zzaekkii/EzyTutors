@@ -13,3 +13,4 @@ pub struct HttpResponse<'a> { // 모두 같은 life time을 가짐.
     // (선택적) 본문.
     body: Option<String>,
 }
+

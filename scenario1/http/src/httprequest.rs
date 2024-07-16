@@ -1,3 +1,19 @@
+use std::collections::HashMap;
+
+#[derive(Debug, PartialEq)]
+pub enum Resource{
+    Path(String),
+}
+
+// HTTP request 구조 정의.
+#[derive(Debug)]
+pub struct HttpRequest {
+    pub method: Method,
+    pub version: Version,
+    pub resource: Resource,
+    pub headers: HashMap<String, String>,
+    pub msg_body: String,
+}
 
 // HTTP 버전 확인 후 값 지정.
 #[derive(Debug, PartialEq)]

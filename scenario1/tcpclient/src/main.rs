@@ -5,7 +5,7 @@ use std::str;
 fn main() {
     let mut stream = TcpStream::connect("localhost:3000").unwrap();
     stream.write("zzaekkii".as_bytes()).unwrap();
-    let mut buffer  = [0; 8];
+    let mut buffer = [0; 8];
     stream.read(&mut buffer).unwrap();
     println!(
         "Got response from server:{:?}",

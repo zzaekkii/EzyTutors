@@ -14,3 +14,14 @@ pub struct HttpResponse<'a> { // 모두 같은 life time을 가짐.
     body: Option<String>,
 }
 
+impl<'a> Default for HttpResponse<'a> {
+    fn default() -> Self {
+        Self{
+            version: "HTTP/1.1".into(),
+            status_code: "200".into(),
+            status_text: "OK".into(),
+            headers: None,
+            body: None,
+        }
+    }
+}

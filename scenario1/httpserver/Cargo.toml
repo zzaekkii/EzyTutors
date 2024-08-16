@@ -7,3 +7,6 @@ edition = "2021"
 
 [dependencies]
 http = {path = "../http"}
+# JSON 직렬화 및 역직렬화를 처리하는 외부 크레이트.
+serde = {version = "1.0.117", features = ["derive"]}
+serde_json = "1.0.59"

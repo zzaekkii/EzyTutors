@@ -9,7 +9,7 @@ pub fn general_routes(cfg: &mut web::ServiceConfig) {
 
 // 핸들러 구성.
 pub async fn health_check_handler() -> impl Responder {
-    HttpResponse::Ok().json("Hello, EzyTutors is stayin' alive~");
+    HttpResponse::Ok().json("Hello, EzyTutors is stayin' alive~")
 }
 
 // HTTP 서버를 인스턴스화하고 실행.

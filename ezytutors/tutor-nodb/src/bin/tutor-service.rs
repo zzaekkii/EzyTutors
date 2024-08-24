@@ -28,6 +28,7 @@ async fn main() -> io::Result<()> {
         App::new()
             .app_data(shared_data.clone()) // 웹 애플리케이션 상태 등록.
             .configure(general_routes) // 웹 애플리케이션 라우트 구성.
+            .configure(course_routes) // 새 course_routes 그룹 등록.
     };
 
     HttpServer::new(app).bind("127.0.0.1:3000")?.run().await

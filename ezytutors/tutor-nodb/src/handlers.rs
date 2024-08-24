@@ -45,6 +45,7 @@ pub async fn new_course(
     HttpResponse::Ok().json("Added course")
 }
 
+// 강사 id로 검색 기능.
 pub async fn get_courses_for_tutor(
     app_state: web::Data<AppState>,
     params: web::Path<i32>,
@@ -67,10 +68,34 @@ pub async fn get_courses_for_tutor(
     }
 }
 
+// 강사 id + 강의 id 검색 기능.
+pub async fn get_course_detail(
+    app_state: web::Data<AppState>,
+    params: web::Path<(i32, i32)>,
+) -> HttpResponse {
+    let (tutor_id, course_id) = params.into_inner();
+    let selected_course = app_state
+        .courses
+        .lock()
+        .unwrap()
+        .clone()
+        .into_iter()
+        .find(|x| x.tutor_id == tutor_id && x.course_id == Some(course_id))
+        .ok_or("Course not found"); // Option<T>를 Result<T, E>로 변환.
+
+    if let Ok(course) = selected_course {
+        HttpResponse::Ok().json(course)
+    } else {
+        HttpResponse::Ok().json("Course not found".to_string())
+    }
+}
+
+// 테스트 코드.
 #[cfg(test)] // cargo test 실행 시에만 실행됨.
 mod tests {
     use super::*; // 부모 모듈로부터 모든 핸들러 선언 import.
     use actix_web::http::StatusCode;
+    use web::ReqData;
     use std::sync::Mutex;
 
     // 비동기 test를 위해 actix web의 비동기 런타임이 이 함수를 실행하도록 지정.
@@ -109,6 +134,22 @@ mod tests {
         let resp = get_courses_for_tutor(app_state, tutor_id).await;
 
         // 응답 확인.
+        assert_eq!(resp.status(), StatusCode::OK);
+    }
+
+    #[actix_rt::test]
+    async fn get_one_course_success() {
+        let app_state: web:: Data<AppState> = web::Data::new(AppState {
+            health_check_response: "".to_string(),
+            visit_count: Mutex::new(0),
+            courses: Mutex::new(vec![]),
+        });
+
+        // 2개 매개변수를 가진 요청 시뮬레이션을 위한 Path 타입 객체.
+        let params: web::Path<(i32, i32)> = web::Path::from((1, 1));
+        // 핸들러 호출.
+        let resp = get_course_detail(app_state, params).await;
+
         assert_eq!(resp.status(), StatusCode::OK);
     }
 }

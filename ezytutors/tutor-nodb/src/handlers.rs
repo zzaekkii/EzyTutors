@@ -95,7 +95,6 @@ pub async fn get_course_detail(
 mod tests {
     use super::*; // 부모 모듈로부터 모든 핸들러 선언 import.
     use actix_web::http::StatusCode;
-    use web::ReqData;
     use std::sync::Mutex;
 
     // 비동기 test를 위해 actix web의 비동기 런타임이 이 함수를 실행하도록 지정.

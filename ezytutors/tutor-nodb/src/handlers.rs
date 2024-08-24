@@ -45,6 +45,28 @@ pub async fn new_course(
     HttpResponse::Ok().json("Added course")
 }
 
+pub async fn get_courses_for_tutor(
+    app_state: web::Data<AppState>,
+    params: web::Path<i32>,
+) -> HttpResponse {
+    let tutor_id: i32 = params.into_inner();
+
+    let filtered_courses = app_state
+        .courses
+        .lock()
+        .unwrap()
+        .clone()
+        .into_iter()
+        .filter(|course| course.tutor_id == tutor_id)
+        .collect::<Vec<Course>>();
+
+    if filtered_courses.len() > 0 { // 강의가 있다면,
+        HttpResponse::Ok().json(filtered_courses)
+    } else { // 강의가 없다면,
+        HttpResponse::Ok().json("No courses found for tutor".to_string())
+    }
+}
+
 #[cfg(test)] // cargo test 실행 시에만 실행됨.
 mod tests {
     use super::*; // 부모 모듈로부터 모든 핸들러 선언 import.
@@ -67,7 +89,26 @@ mod tests {
             courses: Mutex::new(vec![]),
         });
 
+        // 핸들러 호출.
         let resp = new_course(course, app_state).await;
+
+        assert_eq!(resp.status(), StatusCode::OK);
+    }
+
+    #[actix_rt::test]
+    async fn get_all_courses_success() {
+        let app_state: web::Data<AppState> = web::Data::new(AppState {
+            health_check_response: "".to_string(),
+            visit_count: Mutex::new(0),
+            courses: Mutex::new(vec![]),
+        });
+
+        // 요청 매개변수 시뮬레이션.
+        let tutor_id: web::Path<i32> = web::Path::from(1);
+        // 핸들러 호출.
+        let resp = get_courses_for_tutor(app_state, tutor_id).await;
+
+        // 응답 확인.
         assert_eq!(resp.status(), StatusCode::OK);
     }
 }

@@ -6,9 +6,12 @@ pub fn general_routes(cfg: &mut web::ServiceConfig) {
 }
 
 pub fn course_routes(cfg: &mut web::ServiceConfig) {
-    cfg
-    // courses라는 새 리소스 스코프 생성.
-    .service(web::scope("/courses")
-    // 요청을 new_course 핸들러로 전달.
-    .route("/", web::post().to(new_course)));
+    cfg.service(
+        // courses라는 새 리소스 스코프 생성.
+        web::scope("/courses")
+            // 요청을 new_course 핸들러로 전달.
+            .route("/", web::post().to(new_course))
+            // 강사(tutor_id)의 강의들을 받아오는 새 라우트.
+            .route("/{tutor_id}", web::get().to(get_courses_for_tutor)),
+    );
 }

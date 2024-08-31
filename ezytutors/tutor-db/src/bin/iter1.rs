@@ -1,6 +1,5 @@
 use dotenv::dotenv;
 use std::{env, io};
-use tsd::io;
 use sqlx::postgres::PgPool;
 use chrono::NaiveDateTime;
 
@@ -16,12 +15,12 @@ pub struct Course {
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
     // 메모리에 환경 변수 로드.
-    dotenv.ok();
+    dotenv().ok();
     let database_url = env::var("DATABASE_URL").expect(
         "DATABASE_URL is not set in .env file");
 
         // sqlx로 db 커넥션 풀 생성.
-    let db_pool = PgPool::connect(&database_url).await().unwrap();
+    let db_pool = PgPool::connect(&database_url).await.unwrap();
 
     let course_rows = sqlx::query!(
         r#"select course_id, tutor_id, course_name, posted_time from ezy_course_ch4 where course_id = $1"#, 1

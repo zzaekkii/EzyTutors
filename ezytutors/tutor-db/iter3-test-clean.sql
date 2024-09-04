@@ -1,0 +1,1 @@
+DELETE FROM ezy_course_ch4 WHERE course_id = 8;

@@ -1,5 +1,6 @@
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
+use errors::EzyTutorError;
 use sqlx::postgres::PgPool;
 use std::env;
 use std::io;
@@ -38,6 +39,10 @@ async fn main() -> io::Result<()> {
     let app = move || {
         App::new()
             .app_data(shared_data.clone()) // app 상태 인스턴스에 주입
+            .app_data(web::JsonConfig::default().error_handler(|_err, _req| {
+                EzyTutorError::InvalidInput(
+                    "Json 형식의 올바른 입력 부탁드려요~".to_string()).into()
+            }))
             .configure(general_routes)
             .configure(course_routes)
             .configure(tutor_routes)

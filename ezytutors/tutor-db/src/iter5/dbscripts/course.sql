@@ -1,6 +1,9 @@
 /* 테이블이 존재하면 삭제 */
 drop table if exists ezy_course_ch6;
 
+/* enum 타입 정의
+create type course_level_enum as enum ('Beginner', 'Intermediate', 'Expert'); */
+
 /* 테이블 생성 */
 create table ezy_course_ch6
 (
@@ -14,6 +17,7 @@ create table ezy_course_ch6
     course_price INT,
     course_language varchar(30),
     course_level varchar(30),
+    /* course_level course_level_enum not null, */
     posted_time TIMESTAMP default now()
 );
 

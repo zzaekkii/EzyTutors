@@ -64,6 +64,7 @@ mod tests {
     use sqlx::postgres::PgPool;
     use std::env;
     use std::sync::Mutex;
+    // use crate::models::course::CourseLevel;
 
     #[actix_rt::test]
     async fn get_all_courses_success() {
@@ -151,6 +152,7 @@ mod tests {
             course_description: Some("이거 김영한 강의 아님 아무튼 아님".into()),
             course_format: None,
             course_level: Some("Beginner".into()),
+            // course_level: CourseLevel::Beginner,
             course_price: None,
             course_duration: None,
             course_language: Some("한국어".into()),
@@ -179,7 +181,8 @@ mod tests {
             course_name: Some("Rust 마스터 코스 v.최최최최최종".into()),
             course_description: Some("테스틉니다요".into()),
             course_format: None,
-            course_level: Some("Professional".into()),
+            course_level: Some("Expert".into()),
+            // course_level: Some(CourseLevel::Expert),
             course_price: None,
             course_duration: None,
             course_language: Some("한국어".into()),

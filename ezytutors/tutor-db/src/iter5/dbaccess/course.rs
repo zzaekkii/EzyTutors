@@ -19,8 +19,12 @@ pub async fn get_courses_for_tutor_db(pool: &PgPool, tutor_id: i32)
 
     let course_rows: Vec<Course> = sqlx::query_as!(
         Course,
-        "SELECT * FROM ezy_course_ch6
-        WHERE tutor_id = $1 ORDER BY course_id DESC",
+        r#"SELECT course_id, tutor_id, course_name, course_description, course_format,
+                course_structure, course_duration, course_price, course_language,
+                course_level, posted_time
+        FROM ezy_course_ch6
+        WHERE tutor_id = $1
+        ORDER BY course_id DESC"#,
         tutor_id
     )
     .fetch_all(pool) // 쿼리 실행해서 커넥션 풀에 전달.

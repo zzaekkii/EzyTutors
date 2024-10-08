@@ -5,6 +5,14 @@ use std::convert::TryFrom;
 
 use crate::errors::EzyTutorError;
 
+// #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, sqlx::Type)]
+// #[sqlx(type_name = "course_level_enum")] // PostgreSQL의 enum 타입과 연결
+// pub enum CourseLevel {
+//     Beginner,
+//     Intermediate,
+//     Expert,
+// }
+
 #[derive(Deserialize, Serialize, Debug, Clone, sqlx::FromRow)]
 pub struct Course {
     pub tutor_id: i32,
@@ -16,7 +24,8 @@ pub struct Course {
     pub course_duration: Option<String>, // 강의 길이.
     pub course_price: Option<i32>, // 강의 가격.
     pub course_language: Option<String>, // 강의 지원 언어.
-    pub course_level: Option<String>, // 강의 수준.
+    pub course_level: Option<String>,
+    // pub course_level: CourseLevel, // 강의 수준.
     pub posted_time: Option<NaiveDateTime>, // 강의 게시 일자(자동 생성)
 }
 
@@ -31,7 +40,8 @@ pub struct CreateCourse {
     pub course_duration: Option<String>, // 강의 길이.
     pub course_price: Option<i32>, // 강의 가격.
     pub course_language: Option<String>, // 강의 지원 언어.
-    pub course_level: Option<String>, // 강의 수준.
+    pub course_level: Option<String>,
+    // pub course_level: CourseLevel, // 강의 수준.
 }
 
 // 강의 업데이트 전용 구조체 - tutor_id 고정.
@@ -45,6 +55,7 @@ pub struct UpdateCourse {
     pub course_price: Option<i32>,
     pub course_language: Option<String>,
     pub course_level: Option<String>,
+    // pub course_level: Option<CourseLevel>,
 }
 
 impl TryFrom<web::Json<CreateCourse>> for CreateCourse {

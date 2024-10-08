@@ -40,6 +40,7 @@ async fn main() -> io::Result<()> {
             .app_data(shared_data.clone()) // app 상태 인스턴스에 주입
             .configure(general_routes)
             .configure(course_routes)
+            .configure(tutor_routes)
     };
 
     let host_port = env::var("HOST_PORT").expect(

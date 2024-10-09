@@ -1,0 +1,17 @@
+[package]
+name = "tutor-web-app-ssr"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# 웹서버로 정적 파일 제공.
+actix-files = "0.6.6"
+
+# actix 웹 프레임워크.
+actix-web = "4.9.0"
+
+# 템플릿 엔진.
+tera = "1.20.0"
+
+# 웹브라우저 - 웹서버 사이 데이터 직렬화/역직렬화.
+serde = { version = "1.0.210", features = ["derive"] }

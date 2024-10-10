@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/styles.css" />
+    <title>Actix Web - Tutor List</title>
+  </head>
+
+  <body>
+    <h1 class="text-2xl font-bold mt-8 mb-5">Tutors List</h1>
+    <ul>
+      <!-- Tera 템플릿 제어 구문 -->
+      {% for tutor in tutors %}
+      <ol>
+        <h5>{{ tutor.tutor_name }}</h5>
+      </ol>
+      <!-- for 루프 블록 끝 -->
+      {% endfor %}
+    </ul>
+  </body>
+</html>

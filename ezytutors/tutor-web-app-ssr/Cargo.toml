@@ -9,9 +9,18 @@ actix-files = "0.6.6"
 
 # actix 웹 프레임워크.
 actix-web = "4.9.0"
+awc = { version = "3.5.1", features = ["openssl"] }
+
+# 바이너리 빌드용 Openssl.
+openssl = {version = "0.10.66", features = ["vendored"]}
 
 # 템플릿 엔진.
 tera = "1.20.0"
 
 # 웹브라우저 - 웹서버 사이 데이터 직렬화/역직렬화.
 serde = { version = "1.0.210", features = ["derive"] }
+serde_json = "1.0.128"
+
+[dev-dependencies]
+# 비동기 런타임 - 비동기 테스트.
+actix-rt = "2.10.0"

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../static/css/register_styles.css" />
+    <script
+      defer
+      type="module"
+      src="../../static/js/signup-validation.js"
+    ></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <section class="join">
+      <div class="inner">
+        <h1>Tutor Sign Up</h1>
+        <form action="/register" method="POST" id="member">
+          <fieldset>
+            <table border="1" width="600">
+              <tbody>
+                <!-- id -->
+                <tr>
+                  <th scope="row">
+                    <label for="userid">ID</label>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      id="userid"
+                      name="userid"
+                      placeholder="아이디 입력"
+                      value="{{current_userid}}"
+                      autocomplete="userid"
+                      minlength="6"
+                      maxlength="12"
+                      required
+                    />
+                  </td>
+                </tr>
+
+                <!-- password -->
+                <tr>
+                  <th scope="row">
+                    <label for="password">Password</label>
+                  </th>
+                  <td>
+                    <input
+                      type="password"
+                      name="password"
+                      id="password"
+                      placeholder="비밀번호 입력"
+                      value="{{current_password}}"
+                      autocomplete="new-password"
+                      minlength="7"
+                      maxlength="12"
+                      required
+                    />
+                  </td>
+                </tr>
+
+                <!-- re password -->
+                <tr>
+                  <th scope="row">
+                    <label for="confirmation">Re-Password</label>
+                  </th>
+                  <td>
+                    <input
+                      type="password"
+                      name="confirmation"
+                      id="confirmation"
+                      placeholder="비밀번호 재확인"
+                      value="{{current_confirmation}}"
+                      autocomplete="new-password"
+                      minlength="7"
+                      maxlength="12"
+                      required
+                    />
+                  </td>
+                </tr>
+
+                <!-- name -->
+                <tr>
+                  <th scope="row">
+                    <label for="name">Name</label>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="name"
+                      id="name"
+                      placeholder="이름 입력"
+                      value="{{current_name}}"
+                      maxlength="12"
+                      required
+                    />
+                  </td>
+                </tr>
+
+                <!-- image url -->
+                <tr>
+                  <th scope="row">
+                    <label for="imgurl">Image URL</label>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="imageurl"
+                      id="imageurl"
+                      placeholder="이미지 URL 입력"
+                      value="{{current_imageurl}}"
+                      maxlength="100"
+                    />
+                  </td>
+                </tr>
+
+                <!-- profile -->
+                <tr>
+                  <th scope="row">
+                    <label for="profile">Profile</label>
+                  </th>
+                  <td>
+                    <input
+                      type="text"
+                      name="profile"
+                      id="profile"
+                      placeholder="강사 프로필 입력"
+                      value="{{current_profile}}"
+                      maxlength="1000"
+                    />
+                  </td>
+                </tr>
+
+                <!-- error -->
+                <tr>
+                  <th colspan="2">
+                    <label for="error">
+                      <p style="color: red">{{error}}</p>
+                    </label>
+                  </th>
+                </tr>
+
+                <!-- btn set -->
+                <tr>
+                  <th colspan="2" style="text-align: center">
+                    <input type="submit" id="signup" value="Sign up" />
+                    <form
+                      action="/signinhome"
+                      method="GET"
+                      style="display: inline"
+                    >
+                      <input type="submit" id="signin" value="Sign in" />
+                    </form>
+                  </th>
+                </tr>
+              </tbody>
+            </table>
+          </fieldset>
+        </form>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer_copyright">
+        Copyright &copy; 2024 <i>EzyTutors</i>. ALL RIGHTS RESERVED.
+      </div>
+    </footer>
+  </body>
+</html>

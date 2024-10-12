@@ -21,6 +21,15 @@ tera = "1.20.0"
 serde = { version = "1.0.210", features = ["derive"] }
 serde_json = "1.0.128"
 
+# .env 파일.
+dotenv = "0.15.0"
+
+# sqlx.
+sqlx = {version = "0.8.2", default-features = false, features = ["postgres", "runtime-tokio", "macros"]}
+
+# 비밀번호 해시.
+rust-argon2 = "2.1.0"
+
 [dev-dependencies]
 # 비동기 런타임 - 비동기 테스트.
 actix-rt = "2.10.0"

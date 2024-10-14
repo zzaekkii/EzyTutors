@@ -31,8 +31,8 @@ pub async fn handle_register(
     params: web::Form<TutorRegisterForm>,
 ) -> Result<HttpResponse, Error> {
     let mut ctx = tera::Context::new();
-    let userid = params.userid.clone();
-    let user = get_user_record(&app_state.db, userid.to_string()).await;
+    let user_id = params.user_id.clone();
+    let user = get_user_record(&app_state.db, user_id.to_string()).await;
 
     // HTTP response body에 넣을 값.
     let s;
@@ -42,7 +42,7 @@ pub async fn handle_register(
         // 비밀번호 매치 검사 (서버측)
         if params.password != params.confirmation {
             ctx.insert("error", "비밀번호가 일치하지 않습니다.");
-            ctx.insert("current_userid", &params.userid);
+            ctx.insert("current_userid", &params.user_id);
             ctx.insert("current_password", "");
             ctx.insert("current_confirmation", "");
             ctx.insert("current_name", &params.name);
@@ -76,7 +76,7 @@ pub async fn handle_register(
             let config = Config::default();
             let hash = argon2::hash_encoded(params.password.clone().as_bytes(), salt, &config).unwrap();
             let user = User {
-                userid,
+                user_id,
                 tutor_id: Some(tutor_response.tutor_id),
                 user_password: hash,
             };
@@ -85,7 +85,7 @@ pub async fn handle_register(
         }
     } else {
         ctx.insert("error", "해당 id가 이미 존재합니다.");
-        ctx.insert("current_userid", &params.userid);
+        ctx.insert("current_userid", &params.user_id);
         ctx.insert("current_password", "");
         ctx.insert("current_confirmation", "");
         ctx.insert("current_name", &params.name);

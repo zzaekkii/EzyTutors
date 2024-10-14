@@ -1,7 +1,7 @@
 use serde::{Deserialize, Serialize};
 #[derive(Serialize, Deserialize, Debug)]
 pub struct TutorRegisterForm {
-    pub userid: String,
+    pub user_id: String,
     pub password: String,
     pub confirmation: String,
     pub name: String,
@@ -19,7 +19,7 @@ pub struct TutorResponse {
 
 #[derive(Serialize, Deserialize, Debug, sqlx::FromRow)]
 pub struct User {
-    pub userid: String,
+    pub user_id: String,
     pub tutor_id: Option<i32>,
     pub user_password: String,
 }

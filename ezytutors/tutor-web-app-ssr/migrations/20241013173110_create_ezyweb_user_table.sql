@@ -1,3 +1,4 @@
+-- Add migration script here
 DROP TABLE IF EXISTS ezyweb_user;
 
 CREATE TABLE ezyweb_user (

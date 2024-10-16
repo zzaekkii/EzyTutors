@@ -1,11 +1,11 @@
-#[path = "../iter5/mod.rs"]
-mod iter5;
+#[path = "../iter6/mod.rs"]
+mod iter6;
 
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
-use iter5::{errors, handlers, model, routes, state::AppState};
+use iter6::{dbaccess, errors, handler, model, routes, state::AppState};
 use actix_web::web::Data;
-use routes::app_config;
+use routes::{app_config, course_config};
 use std::env;
 use sqlx::postgres::PgPool;
 use tera::Tera;
@@ -21,11 +21,12 @@ async fn main() -> std::io::Result<()> {
     let shared_data = web::Data::new(AppState{ db: db_pool });
 
     HttpServer::new(move || {
-        let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/static/iter5/**/*")).unwrap();
+        let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/static/iter6/**/*")).unwrap();
 
         App::new()
             .app_data(Data::new(tera))
             .app_data(shared_data.clone())
+            .configure(course_config) // /courses/ 접두사와 매치.
             .configure(app_config)
     })
     .bind(&host_port)?

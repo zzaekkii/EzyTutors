@@ -1,31 +1,10 @@
 const form = document.querySelector("#member");
 const btnSubmit = form.querySelector("#signup");
 
-btnSubmit.addEventListener("click", (e) => {
-  if (!isTxt("userid", 6)) e.preventDefault();
+form.addEventListener("submit", function (e) {
   if (!isPassword("password", 7)) e.preventDefault();
   if (!isRePassword("confirmation")) e.preventDefault();
 });
-
-function isTxt(name, len) {
-  const input = form.querySelector(`[name=${name}]`);
-  const txt = input.value;
-
-  if (txt.length >= len) {
-    const errMsgs = input.closest("td").querySelectorAll("p");
-    if (errMsgs.length > 0) input.closest("td").querySelector("p").remove();
-    return true;
-  } else {
-    const errMsgs = input.closest("td").querySelectorAll("p");
-    if (errMsgs.length > 0) input.closest("td").querySelector("p").remove();
-
-    const errMsg = document.createElement("p");
-    errMsg.append(`${len}글자 이상 입력하세요.`);
-    input.closest("td").append(errMsg);
-
-    return false;
-  }
-}
 
 function isPassword(name, len) {
   const input = form.querySelector(`[name=${name}]`);

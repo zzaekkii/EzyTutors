@@ -1,0 +1,135 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Quintessential&family=Raleway:wght@100&display=swap");
+@import url("reset.css");
+
+body {
+  background-color: rgb(247, 235, 235);
+  font-family: "Aboreto";
+}
+
+.join {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.5%;
+}
+.join .inner {
+  width: 60%;
+  padding: 1.5%;
+  background-color: white;
+}
+.join .inner h1 {
+  font: normal 50px/1 "Aboreto";
+  color: #555;
+  margin-bottom: 25px;
+}
+.join .inner table {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+.join .inner table th,
+.join .inner table td {
+  border: none;
+  border-bottom: 1px solid #ddd;
+  padding: 2% 1%;
+}
+.join .inner table th {
+  width: 25%;
+}
+#signin {
+  width: 23%;
+  height: 40px;
+  border: 1px solid #333;
+  margin: 10px;
+  font: bold 14px "Aboreto";
+  background: #fff;
+  color: #555;
+  cursor: pointer;
+  transition: 0.4s;
+}
+#signin:hover {
+  background: #333;
+  color: #fff;
+}
+#signup {
+  width: 23%;
+  height: 40px;
+  border: 1px solid #333;
+  margin: 10px;
+  font: bold 14px "Aboreto";
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+}
+#signup:hover {
+  background: #fff;
+  color: #555;
+}
+
+.join .inner table td {
+  border-left: 1px solid #ccc;
+  font-family: Arial;
+}
+.join .inner table td input[type="text"],
+.join .inner table td input[type="password"],
+.join .inner table td select {
+  width: 70%;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid #aaa;
+  padding: 10px;
+}
+.join .inner table td input[type="radio"] {
+  margin-right: 30px;
+}
+.join .inner table td textarea {
+  width: 60%;
+  height: auto;
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid #aaa;
+  resize: none;
+}
+.join .inner table td p {
+  font: 10px/1;
+  color: rgb(218, 17, 17);
+  margin-top: 5px;
+}
+
+footer {
+  position: static;
+  bottom: 0;
+  width: 100%;
+  height: 70px;
+  background: rgba(30, 29, 29, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer_copyright i {
+  color: rgb(102, 38, 229);
+}
+.footer_copyright {
+  color: rgb(169, 168, 168);
+  font: 0.8vw/2 "Arial";
+  letter-spacing: 2px;
+}
+.footer_scroll-up {
+  width: 50px;
+  height: 50px;
+  background: rgba(68, 67, 67, 0.8);
+  border-radius: 50%;
+  position: fixed;
+  bottom: 3vh;
+  right: 3vh;
+  z-index: 10;
+  text-align: center;
+  line-height: 47px;
+  color: white;
+  box-shadow: 1px 2px 5px 0px rgba(0, 0, 0, 0.3);
+}
+.footer_scroll-up:hover {
+  background: rgb(173, 172, 172);
+}

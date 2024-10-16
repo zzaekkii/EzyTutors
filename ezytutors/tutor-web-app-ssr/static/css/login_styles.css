@@ -1,81 +1,100 @@
 @charset "UTF-8";
-@import url("https://fonts.googleapis.com/css2?family=Aboreto&family=Quintessential&family=Raleway:wght@100&display=swap");
 @import url("reset.css");
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background-color: rgba(220, 220, 220, 0.404);
+  width: 100%;
+  height: 100%;
+  background-color: rgb(247, 235, 235);
   font-family: "Aboreto";
 }
 
-.join {
+.login {
+  margin-top: 3%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 2.5%;
+  margin-bottom: 8%;
 }
-.join .inner {
+.login .inner {
   width: 60%;
-  padding: 1.5%;
+  padding: 3%;
   background-color: white;
 }
-.join .inner h1 {
-  font: normal 50px/1 "Aboreto";
+.login .inner h1 {
+  font: normal 60px/1 "Aboreto";
   color: #555;
   margin-bottom: 25px;
 }
-.join .inner table {
+.login .inner table {
   width: 100%;
   border: none;
   border-top: 2px solid #333;
   border-bottom: 2px solid #333;
 }
-.join .inner table th,
-.join .inner table td {
+.login .inner table th,
+.login .inner table td {
   border: none;
   border-bottom: 1px solid #ddd;
   padding: 2% 1%;
 }
-.join .inner table th {
+.login .inner table th {
   width: 25%;
 }
-.join .inner table th input[type="submit"] {
-  width: 30%;
+#signup {
+  width: 23%;
   height: 40px;
   border: 1px solid #333;
   margin: 10px;
   font: bold 14px "Aboreto";
+  background: #fff;
   color: #555;
   cursor: pointer;
   transition: 0.4s;
 }
-.join .inner table th input[type="submit"]:hover {
+#signup:hover {
   background: #333;
   color: #fff;
 }
-.join .inner table td {
+#signin {
+  width: 23%;
+  height: 40px;
+  border: 1px solid #333;
+  margin: 10px;
+  font: bold 14px "Aboreto";
+  background: #333;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+}
+#signin:hover {
+  background: #fff;
+  color: #555;
+}
+
+.login .inner table td {
   border-left: 1px solid #ccc;
   font-family: Arial;
 }
-.join .inner table td input[type="text"],
-.join .inner table td input[type="password"],
-.join .inner table td select {
+.login .inner table td input[type="text"],
+.login .inner table td input[type="password"] {
   width: 70%;
   background: rgba(0, 0, 0, 0.03);
   border: 1px solid #aaa;
   padding: 10px;
 }
-.join .inner table td input[type="radio"] {
-  margin-right: 30px;
-}
-.join .inner table td textarea {
+.login .inner table td textarea {
   width: 60%;
   height: auto;
   background: rgba(0, 0, 0, 0.03);
   border: 1px solid #aaa;
   resize: none;
 }
-.join .inner table td p {
+.login .inner table td p {
   font: 10px/1;
   color: rgb(218, 17, 17);
   margin-top: 5px;
